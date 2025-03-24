@@ -30,10 +30,10 @@ jobs:
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
+          password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd /ruta/del/proyecto/en/el/servidor
+            cd /root/Pipeline
             git pull origin main
             npm install
             npm run build
-            pm2 restart all
+            pm2 restart pipeline
