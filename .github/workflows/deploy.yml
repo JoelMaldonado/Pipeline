@@ -1,0 +1,39 @@
+name: Deploy NestJS App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Clonar el repositorio
+        uses: actions/checkout@v4
+
+      - name: 🔄 Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: 📦 Instalar dependencias
+        run: npm install
+
+      - name: 🔨 Construir el proyecto
+        run: npm run build
+
+      - name: 🚀 Desplegar en el servidor
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd /ruta/del/proyecto/en/el/servidor
+            git pull origin main
+            npm install
+            npm run build
+            pm2 restart all
