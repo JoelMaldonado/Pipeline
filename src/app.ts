@@ -4,7 +4,7 @@ const app = express();
 const PORT = 2178;
 
 app.get("/ping", (_req, res) => {
-  res.send("pong");
+  res.send("Este es un nuevo cambio");
 });
 
 app.listen(PORT, () => {
