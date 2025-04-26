@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd /ruta/donde/esta/tu/proyecto
+            cd /root/Pipelines/express-app
             git pull origin main
             npm install
             npm run build
