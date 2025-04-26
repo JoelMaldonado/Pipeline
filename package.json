@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "ts-node-dev --respawn src/app.ts",
     "build": "tsc",
-    "start": "node dist/app.js"
+    "start": "pm2 start dist/app.js --name pipeline",
+    "restart": "pm2 restart pipeline"
   },
   "keywords": [],
   "author": "",
